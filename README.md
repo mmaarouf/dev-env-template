@@ -24,3 +24,6 @@ Builds & pushes the development environment.
 
 ### `./bin/shell`
 Runs a new `sh` in the dev env. It also serves as an example of how to source `./bin/dev-env` and use `run` command.
+
+## CI
+Project comes with a basic Circle CI pipeline configuration under `./circleci/config.yml`.
