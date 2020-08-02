@@ -1,8 +1,9 @@
 version: '3.2'
+# REPLACE ALL "{{PROJECT_NAME}}" with the actual project name.
 services:
-  flua-dev-env:
-    container_name: 'flua-dev-env'
-    image: 'maarouf/flua-dev-env:latest'
+  {{PROJECT_NAME}}-dev-env:
+    container_name: '{{PROJECT_NAME}}-dev-env'
+    image: 'maarouf/{{PROJECT_NAME}}-dev-env:latest'
     stdin_open: true
     tty: true
     volumes:
