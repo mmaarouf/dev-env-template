@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -eu
+
+PROJECT_NAME=
+DEV_CONTAINER=$PROJECT_NAME-dev-env
+DOCKER_COMPOSE="docker-compose -f `dirname $0`/../docker/docker-compose.yml"
+
+if [ -z $PROJECT_NAME ]; then
+    RED='\033[0;31m'
+    NO_COLOUR='\033[0m'
+    printf "${RED}Error: ${NO_COLOUR}\$PROJECT_NAME in ./bin/dev-env is not set.\n"
+    exit 1
+fi
+
+run() {
+    set -u
+    COMMAND=$@
+    RUNNING_CONTAINER=`docker ps --format '{{.Names}}' | grep -s "^$DEV_CONTAINER$" | head -n 1`
+
+    if [[ -n $RUNNING_CONTAINER ]]; then
+        echo in container
+        $DOCKER_COMPOSE exec $DEV_CONTAINER sh -c "$COMMAND"
+    else
+        echo new container
+        $DOCKER_COMPOSE run --rm --service-ports $DEV_CONTAINER -c "$COMMAND"
+    fi
+}
