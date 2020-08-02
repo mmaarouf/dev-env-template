@@ -18,10 +18,10 @@ run() {
     RUNNING_CONTAINER=`docker ps --format '{{.Names}}' | grep -s "^$DEV_CONTAINER$" | head -n 1`
 
     if [[ -n $RUNNING_CONTAINER ]]; then
-        echo in container
+        echo Running in existing container
         $DOCKER_COMPOSE exec $DEV_CONTAINER sh -c "$COMMAND"
     else
-        echo new container
+        echo Running in new container
         $DOCKER_COMPOSE run --rm --service-ports $DEV_CONTAINER -c "$COMMAND"
     fi
 }

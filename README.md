@@ -21,3 +21,6 @@ Stops and deletes the running development environment.
 
 ### `./bin/build-dev-env`
 Builds & pushes the development environment.
+
+### `./bin/shell`
+Runs a new `sh` in the dev env. It also serves as an example of how to source `./bin/dev-env` and use `run` command.
