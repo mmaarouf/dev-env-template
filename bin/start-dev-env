@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source `dirname $0`/dev-env
+
+$DOCKER_COMPOSE up -d
