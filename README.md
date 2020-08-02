@@ -27,3 +27,6 @@ Runs a new `sh` in the dev env. It also serves as an example of how to source `.
 
 ## CI
 Project comes with a basic Circle CI pipeline configuration under `./circleci/config.yml`.
+
+## .editorconfig
+Project contains an [`.editconfig`](https://editorconfig.org/) for consistent coding style across different editors.
