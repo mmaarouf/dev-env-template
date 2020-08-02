@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+  flua-dev-env:
+    container_name: 'flua-dev-env'
+    image: 'maarouf/flua-dev-env:latest'
+    stdin_open: true
+    tty: true
+    volumes:
+       - ..:/code
+    working_dir: /code
