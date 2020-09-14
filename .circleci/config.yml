@@ -7,4 +7,4 @@ jobs:
     steps:
       - checkout
 
-      - run: . ./bin/dev-env && run echo "hi"
+      - run: . ./bin/dev-env/runner && run echo "hi"
