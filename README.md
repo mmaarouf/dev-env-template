@@ -2,6 +2,7 @@
 Template development environment to be used when creating new projects.
 
 ## Setup steps
+* Copy contents of this project into new project repo
 * Set the project name in `$PROJECT_NAME` variable in `./bin/dev-env/runner`
 * Replace all `{{PROJECT_NAME}}` instances in ./docker/docker-compose.yml with the project name
 * Customise `./docker/Dockerfile.dev` with all the development tools needed
