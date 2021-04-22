@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+create_dev_env() {
+    set -e
+
+    dir=out/$project-dev-env
+    rm -rf $dir
+    mkdir -p out
+    cp -rp template $dir
+
+    cd $dir
+    find . -type f -exec sed -i -e "s/{{PROJECT_NAME}}/$project/g" {} \;
+
+    echo "New dev env generated under $dir"
+}
+
+run_generation_function_commands() {
+    echo "project=$1; `declare -f create_dev_env | sed '1,2d;$d' | tr -d '\n'`"
+}
+
+if [[ -z $1 ]]; then
+    echo "Usage: ./create-new-dev-env [project name]"
+    exit 1
+fi
+
+docker run \
+    --rm \
+    --mount source=$PWD,target=/code,type=bind \
+    -w /code \
+    bash:latest -c "`run_generation_function_commands $1`"
