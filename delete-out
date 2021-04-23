@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+docker run \
+    --rm \
+    --mount source=$PWD,target=/code,type=bind \
+    -w /code \
+    bash:latest rm -rf out
