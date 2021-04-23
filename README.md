@@ -1,6 +1,10 @@
 # dev-env-template
 Template development environment to be used when creating new projects.
 
+## Required Tools
+* bash
+* Docker
+
 ## Usage
 
 ### Creating a New Project From Template
