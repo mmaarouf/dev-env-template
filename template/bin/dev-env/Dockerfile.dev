@@ -1,1 +1,3 @@
-FROM alpine:latest
+FROM bash:latest
+
+ENTRYPOINT ["bash", "-l"]
