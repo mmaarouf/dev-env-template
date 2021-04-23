@@ -1,18 +1,21 @@
 # dev-env-template
 Template development environment to be used when creating new projects.
 
-## Setup steps
-* Copy contents of this project into new project repo
-* Set the project name in `$PROJECT_NAME` variable in `./bin/dev-env/runner`
-* Replace all `{{PROJECT_NAME}}` instances in ./docker/docker-compose.yml with the project name
-* Customise `./docker/Dockerfile.dev` with all the development tools needed
-* Use `./bin/dev-env/build` to build and publish the dev environment under `mmaarouf/$PROJECT_NAME-dev-env` **public** repo on Dockerhub
+## Usage
+
+### Creating a New Project From Template
+Running `./create-dev-env [project]` creates a new project from template under `./out/[project]-dev-env`.
+The project can then be copied out of `./out/` to another location and used for the new project.
+
+### Clean-up
+Running `./delete-out` deletes the `./out/` directory.
 
 ## Scripts
 
 ### `./bin/dev-env/runner`
-Script containing the `run` command which can be sourced into other scripts and used to execute commands in either
-an already running development environment container or in a new ephemeral instance.
+Script containing the `run` commands which can be sourced into other scripts and used to execute
+commands in either an already running development environment container or in a new ephemeral
+instance. Executing the scripts within container will simple run the command within the local shell.
 
 ### `./bin/dev-env/start`
 Starts the development environment and leaves it running in the background.
@@ -24,7 +27,7 @@ Stops and deletes the running development environment.
 Builds & pushes the development environment.
 
 ### `./bin/shell`
-Runs a new `sh` in the dev env. It also serves as an example of how to source `./bin/dev-env/runner` and use `run` command.
+Runs a new `bash` in the dev env. It also serves as an example of how to source `./bin/dev-env/runner` and use `run` command.
 
 ## CI
 Project comes with a basic Circle CI pipeline configuration under `./circleci/config.yml`.
