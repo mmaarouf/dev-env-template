@@ -7,5 +7,5 @@ services:
     stdin_open: true
     tty: true
     volumes:
-       - ..:/code
+       - ../..:/code
     working_dir: /code
