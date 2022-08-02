@@ -3,7 +3,7 @@
 create_dev_env() {
     set -e
 
-    dir=out/$project-dev-env
+    dir=out/$project
     rm -rf $dir
     mkdir -p out
     cp -rp template $dir
