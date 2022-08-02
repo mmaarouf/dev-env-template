@@ -2,7 +2,8 @@ version: '3.2'
 services:
   {{PROJECT_NAME}}-dev-env:
     container_name: '{{PROJECT_NAME}}-dev-env'
-    image: 'mmaarouf/{{PROJECT_NAME}}-dev-env:latest'
+    build:
+        context: .
     stdin_open: true
     tty: true
     volumes:
