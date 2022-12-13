@@ -1,6 +1,7 @@
 version: '3.2'
 services:
   {{PROJECT_NAME}}-dev-env:
+    image: 'mmaarouf/{{project_NAME}}-dev-env:latest'
     container_name: '{{PROJECT_NAME}}-dev-env'
     build:
         context: .
