@@ -3,4 +3,4 @@ CURRENT_DIR=`dirname $BASH_SOURCE`
 source $CURRENT_DIR/runner
 
 echo "Building dev env image"
-docker-compose -f $CURRENT_DIR/docker-compose.yml build $DEV_CONTAINER
+docker_compose build $DEV_CONTAINER

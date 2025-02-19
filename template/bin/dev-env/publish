@@ -5,7 +5,7 @@ source $CURRENT_DIR/runner
 IMAGE_NAME=mmaarouf/$DEV_CONTAINER:latest
 
 echo "Building dev env image"
-$DOCKER_COMPOSE build $DEV_CONTAINER
+docker_compose build $DEV_CONTAINER
 
 read -p "Push image $IMAGE_NAME? [y/n]" ANSWER
 case $ANSWER in

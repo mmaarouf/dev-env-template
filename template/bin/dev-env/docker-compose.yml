@@ -8,5 +8,5 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ../..:/code
-    working_dir: /code
+        - ${PROJECT_DIR}:${PROJECT_DIR}
+    working_dir: ${PROJECT_DIR}
