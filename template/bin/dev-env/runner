@@ -26,39 +26,33 @@ docker_compose() {
         -p $PROJECT_NAME $@
 }
 
-run_in_container() {
-    set -u
-    command=$@
-    running_container=`docker ps --format '{{.Names}}' | grep -s "^$DEV_CONTAINER$" | head -n 1`
-
-    if [[ -n $running_container ]]; then
-        echo Running in existing container
-        docker_compose exec $DEV_CONTAINER bash -l -c "$command"
+is_running_in_docker() {
+    if [[ -f /.dockerenv ]]; then
+        echo true
     else
-        echo Running in new container
-        docker_compose run --rm --service-ports $DEV_CONTAINER -c "$command"
+        echo false
     fi
+}
+
+get_running_container() {
+    docker ps --format '{{.Names}}' | grep -s "^$DEV_CONTAINER$" | head -n 1
 }
 
 run() {
-    set -u
-    command=$@
-
-    if [[ -f /.dockerenv ]]; then # check if we're in the container
-        bash -c "$command"
-    else
-        run_in_container $command
+    local calling_script=$0
+    if [[ `is_running_in_docker` == true ]]; then
+        return 0
     fi
-}
 
-inline_function() {
-    set -u
-    function=$1
-    declare -f $function | sed '1,2d;$d' | tr -d '\n'
-}
+    local running_container=`get_running_container`
 
-run_function() {
-    set -u
-    function=$1
-    run "`inline_function $function`"
+    if [[ -n $running_container ]]; then
+        echo 'Running in existing container'
+        docker_compose exec $DEV_CONTAINER bash $calling_script $@
+        exit $?
+    else
+        echo 'Running in new container'
+        docker_compose run --rm --service-ports $DEV_CONTAINER $calling_script $@
+        exit $?
+    fi
 }
