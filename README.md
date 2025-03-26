@@ -36,7 +36,7 @@ Note that you can pass script arguments to the `run` command via `run $@`.
 Example usage in a script:
 
 ```bash
-!#/usr/bin/env bash
+#!/usr/bin/env bash
 source `dirname $BASH_SOURCE`/dev-env/runner && run $@
 
 # ...the rest of the script
