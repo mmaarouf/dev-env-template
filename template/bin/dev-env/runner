@@ -48,7 +48,7 @@ run() {
 
     if [[ -n $running_container ]]; then
         echo 'Running in existing container'
-        docker_compose exec $DEV_CONTAINER bash $calling_script $@
+        docker_compose exec $DEV_CONTAINER bash -l $calling_script $@
         exit $?
     else
         echo 'Running in new container'
