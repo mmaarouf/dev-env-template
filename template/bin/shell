@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-source `dirname $BASH_SOURCE`/dev-env/runner && run
+source "$(dirname "${BASH_SOURCE[0]}")"/dev-env/runner && run
 
-bash
+bash -l
