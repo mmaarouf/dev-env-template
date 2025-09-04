@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-PROJECT_NAME={{PROJECT_NAME}}
-DEV_CONTAINER=$PROJECT_NAME-dev-env
+PROJECT_NAME="{{PROJECT_NAME}}"
+DEV_CONTAINER="$PROJECT_NAME-dev-env"
 
 if [ -z $PROJECT_NAME ]; then
     red=$'\033[0;31m'
@@ -12,17 +12,13 @@ if [ -z $PROJECT_NAME ]; then
 fi
 
 get_project_dir() {
-    local home_dir
-    home_dir="$(dirname "${BASH_SOURCE[0]}")/../../"
+    local -r home_dir="$(dirname "${BASH_SOURCE[0]}")/../../"
     readlink -m "$home_dir"
 }
 
 docker_compose() {
-    local project_dir
-    project_dir=$(get_project_dir)
-
-    local docker_compose_file
-    docker_compose_file="$(dirname "${BASH_SOURCE[0]}")/docker-compose.yml"
+    local -r project_dir=$(get_project_dir)
+    local -r docker_compose_file="$(dirname "${BASH_SOURCE[0]}")/docker-compose.yml"
 
     # Note: declaring project name via -p is required to be able to exec into the containers
     PROJECT_DIR=$project_dir docker-compose \
@@ -43,13 +39,12 @@ get_running_container() {
 }
 
 run() {
-    local calling_script=$0
+    local -r calling_script=$(realpath "$0")
     if [[ $(is_running_in_docker) == true ]]; then
         return 0
     fi
 
-    local running_container
-    running_container="$(get_running_container)"
+    local -r running_container="$(get_running_container)"
 
     if [[ -n $running_container ]]; then
         echo 'Running in existing container'
