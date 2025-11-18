@@ -12,7 +12,7 @@ if [ -z $PROJECT_NAME ]; then
 fi
 
 get_project_dir() {
-    local -r home_dir="$(dirname "${BASH_SOURCE[0]}")/../../"
+    local -r home_dir="$(dirname "${BASH_SOURCE[0]}")/../"
     readlink -m "$home_dir"
 }
 
