@@ -4,7 +4,6 @@
 
 ### Tools
 
-* Linux-like environment
 * bash
 * Docker
 * Docker Compose
