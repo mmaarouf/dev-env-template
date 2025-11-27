@@ -1,4 +1,3 @@
-version: '3.2'
 services:
   {{PROJECT_NAME}}-dev-env:
     image: 'mmaarouf/{{PROJECT_NAME}}-dev-env:latest'
