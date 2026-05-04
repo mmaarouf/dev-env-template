@@ -13,8 +13,7 @@ fi
 
 get_project_dir() {
     local -r home_dir="$(dirname "${BASH_SOURCE[0]}")/../"
-    local -r expanded_path="$(readlink -f "$home_dir")"
-    echo "$expanded_path"
+    realpath "$home_dir"
 }
 
 docker_compose() {
@@ -28,7 +27,8 @@ docker_compose() {
 }
 
 is_running_in_docker() {
-    if [[ -f /.dockerenv ]]; then
+    local -r in_dev_env=$(env | grep dev_env)
+    if [[ $in_dev_env ]]; then
         echo true
     else
         echo false
