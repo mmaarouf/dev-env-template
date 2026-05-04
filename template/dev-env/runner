@@ -13,7 +13,8 @@ fi
 
 get_project_dir() {
     local -r home_dir="$(dirname "${BASH_SOURCE[0]}")/../"
-    readlink -m "$home_dir"
+    local -r expanded_path="$(readlink -f "$home_dir")"
+    echo "$expanded_path"
 }
 
 docker_compose() {
